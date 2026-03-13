@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"smart_wristband_for_elderly\startup_stm32f103xb.o"
+"smart_wristband_for_elderly\main.o"
+"smart_wristband_for_elderly\gpio.o"
+"smart_wristband_for_elderly\stm32f1xx_it.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_msp.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_gpio_ex.o"
+"smart_wristband_for_elderly\stm32f1xx_hal.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_rcc.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_rcc_ex.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_gpio.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_dma.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_cortex.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_pwr.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_flash.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_flash_ex.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_exti.o"
+"smart_wristband_for_elderly\system_stm32f1xx.o"
+"smart_wristband_for_elderly\oled.o"
+--strict --scatter "Smart_wristband_for_elderly\Smart_wristband_for_elderly.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Smart_wristband_for_elderly.map" -o Smart_wristband_for_elderly\Smart_wristband_for_elderly.axf

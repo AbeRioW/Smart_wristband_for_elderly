@@ -1,0 +1,1 @@
+smart_wristband_for_elderly\startup_stm32f103xb.o: startup_stm32f103xb.s
