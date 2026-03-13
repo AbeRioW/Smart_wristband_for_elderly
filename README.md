@@ -1,0 +1,2 @@
+# Smart_wristband_for_elderly
+基于STM32的智能手环老人防跌倒设计
