@@ -28,6 +28,7 @@ smart_wristband_for_elderly\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1x
 smart_wristband_for_elderly\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 smart_wristband_for_elderly\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 smart_wristband_for_elderly\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+smart_wristband_for_elderly\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 smart_wristband_for_elderly\oled.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 smart_wristband_for_elderly\oled.o: ..\App\oledfont.h
 smart_wristband_for_elderly\oled.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

@@ -3,6 +3,7 @@
 "smart_wristband_for_elderly\main.o"
 "smart_wristband_for_elderly\gpio.o"
 "smart_wristband_for_elderly\i2c.o"
+"smart_wristband_for_elderly\usart.o"
 "smart_wristband_for_elderly\stm32f1xx_it.o"
 "smart_wristband_for_elderly\stm32f1xx_hal_msp.o"
 "smart_wristband_for_elderly\stm32f1xx_hal_gpio_ex.o"
@@ -17,10 +18,12 @@
 "smart_wristband_for_elderly\stm32f1xx_hal_flash.o"
 "smart_wristband_for_elderly\stm32f1xx_hal_flash_ex.o"
 "smart_wristband_for_elderly\stm32f1xx_hal_exti.o"
+"smart_wristband_for_elderly\stm32f1xx_hal_uart.o"
 "smart_wristband_for_elderly\system_stm32f1xx.o"
 "smart_wristband_for_elderly\oled.o"
 "smart_wristband_for_elderly\max30102.o"
 "smart_wristband_for_elderly\mpu6050.o"
+"smart_wristband_for_elderly\gps.o"
 --strict --scatter "Smart_wristband_for_elderly\Smart_wristband_for_elderly.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

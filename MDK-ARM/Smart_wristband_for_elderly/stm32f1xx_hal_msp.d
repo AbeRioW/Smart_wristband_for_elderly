@@ -26,3 +26,4 @@ smart_wristband_for_elderly\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver
 smart_wristband_for_elderly\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 smart_wristband_for_elderly\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 smart_wristband_for_elderly\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+smart_wristband_for_elderly\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h

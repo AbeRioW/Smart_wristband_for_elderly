@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "i2c.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -26,6 +27,7 @@
 #include "oled.h"
 #include "max30102.h"
 #include "mpu6050.h"
+#include "gps.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,6 +50,8 @@
 /* USER CODE BEGIN PV */
 MAX30102_Data max30102_data;
 MPU6050_Data mpu6050_data;
+GPS_Data gps_data;
+uint8_t gps_rx_buf;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,6 +62,19 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+// USART 接收回调函数
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART1)
+    {
+        // 处理 GPS 数据
+        GPS_ProcessData(gps_rx_buf);
+        
+        // 重新启动接收中断
+        HAL_UART_Receive_IT(&huart1, &gps_rx_buf, 1);
+    }
+}
 
 /* USER CODE END 0 */
 
@@ -91,6 +108,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   OLED_Init();
   MAX30102_Init();
@@ -105,6 +123,12 @@ int main(void)
   OLED_ShowNum(80, 0, mpu_id, 2, 8, 1);
   OLED_Refresh();
   HAL_Delay(500);
+  
+  // 初始化 GPS 模块
+  GPS_Init();
+  
+  // 启动 USART1 接收中断
+  HAL_UART_Receive_IT(&huart1, &gps_rx_buf, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -120,57 +144,102 @@ int main(void)
     // 读取 MPU6050 数据
     MPU6050_ReadData(&mpu6050_data);
     
-    // 清除显示区域
-    OLED_Clear();
+    // 读取 GPS 数据
+    GPS_GetData(&gps_data);
     
-    // 第一行显示心率
-    OLED_ShowString(0, 0, (uint8_t*)"HR:", 8, 1);
+    static uint8_t first_display = 1;
+    
+    if (first_display)
+    {
+        // 第一次显示时清除屏幕
+        OLED_Clear();
+        first_display = 0;
+        
+        // 显示固定的标签
+        OLED_ShowString(0, 0, (uint8_t*)"HR:", 8, 1);
+        OLED_ShowString(72, 0, (uint8_t*)"SpO2:", 8, 1);
+        OLED_ShowString(0, 8, (uint8_t*)"A:", 8, 1);
+        OLED_ShowString(0, 16, (uint8_t*)"G:", 8, 1);
+        OLED_ShowString(0, 24, (uint8_t*)"GPS:", 8, 1);
+        OLED_ShowString(80, 24, (uint8_t*)"Sats:", 8, 1);
+        OLED_ShowString(0, 32, (uint8_t*)"Lat:", 8, 1);
+        OLED_ShowString(0, 40, (uint8_t*)"Lon:", 8, 1);
+        OLED_ShowString(128, 0, (uint8_t*)"%", 8, 1);
+    }
+    
+    // 只更新变化的数据部分
+    
+    // 第一行：心率和血氧
     if (max30102_data.heart_rate > 0)
     {
-      OLED_ShowNum(24, 0, (uint32_t)max30102_data.heart_rate, 3, 8, 1);
-      OLED_ShowString(48, 0, (uint8_t*)"BPM", 8, 1);
+        OLED_ShowNum(24, 0, (uint32_t)max30102_data.heart_rate, 3, 8, 1);
+        OLED_ShowString(48, 0, (uint8_t*)"BPM", 8, 1);
     }
     else
     {
-      OLED_ShowString(24, 0, (uint8_t*)"---", 8, 1);
+        OLED_ShowString(24, 0, (uint8_t*)"---", 8, 1);
     }
     
-    // 第二行显示血氧
-    OLED_ShowString(0, 8, (uint8_t*)"SpO2:", 8, 1);
     if (max30102_data.spo2 > 0)
     {
-      OLED_ShowNum(40, 8, (uint32_t)max30102_data.spo2, 3, 8, 1);
-      OLED_ShowString(64, 8, (uint8_t*)"%", 8, 1);
+        OLED_ShowNum(104, 0, (uint32_t)max30102_data.spo2, 3, 8, 1);
     }
     else
     {
-      OLED_ShowString(40, 8, (uint8_t*)"---", 8, 1);
+        OLED_ShowString(104, 0, (uint8_t*)"---", 8, 1);
     }
     
-    // 第三行显示温度
-    OLED_ShowString(0, 16, (uint8_t*)"T:", 8, 1);
-    int16_t temp_int = (int16_t)mpu6050_data.temperature;
-    OLED_ShowNum(16, 16, (uint32_t)temp_int, 2, 8, 1);
-    OLED_ShowString(40, 16, (uint8_t*)".", 8, 1);
-    int16_t temp_frac = (int16_t)((mpu6050_data.temperature - temp_int) * 10);
-    if (temp_frac < 0) temp_frac = -temp_frac;
-    OLED_ShowNum(48, 16, (uint32_t)temp_frac, 1, 8, 1);
-    OLED_ShowString(56, 16, (uint8_t*)"C", 8, 1);
+    // 第二行：加速度计
+    OLED_ShowNum(16, 8, (uint32_t)(mpu6050_data.accel_x / 100), 2, 8, 1);
+    OLED_ShowNum(48, 8, (uint32_t)(mpu6050_data.accel_y / 100), 2, 8, 1);
+    OLED_ShowNum(80, 8, (uint32_t)(mpu6050_data.accel_z / 100), 2, 8, 1);
     
-    // 第四行显示加速度计
-    OLED_ShowString(0, 24, (uint8_t*)"A:", 8, 1);
-    OLED_ShowNum(16, 24, (uint32_t)(mpu6050_data.accel_x / 100), 2, 8, 1);
-    OLED_ShowNum(48, 24, (uint32_t)(mpu6050_data.accel_y / 100), 2, 8, 1);
-    OLED_ShowNum(80, 24, (uint32_t)(mpu6050_data.accel_z / 100), 2, 8, 1);
+    // 第三行：陀螺仪
+    OLED_ShowNum(16, 16, (uint32_t)(mpu6050_data.gyro_x / 100), 2, 8, 1);
+    OLED_ShowNum(48, 16, (uint32_t)(mpu6050_data.gyro_y / 100), 2, 8, 1);
+    OLED_ShowNum(80, 16, (uint32_t)(mpu6050_data.gyro_z / 100), 2, 8, 1);
     
-    // 第五行显示陀螺仪
-    OLED_ShowString(0, 32, (uint8_t*)"G:", 8, 1);
-    OLED_ShowNum(16, 32, (uint32_t)(mpu6050_data.gyro_x / 100), 2, 8, 1);
-    OLED_ShowNum(48, 32, (uint32_t)(mpu6050_data.gyro_y / 100), 2, 8, 1);
-    OLED_ShowNum(80, 32, (uint32_t)(mpu6050_data.gyro_z / 100), 2, 8, 1);
+    // 第四行：GPS 状态
+    if (gps_data.fix)
+        OLED_ShowString(32, 24, (uint8_t*)"Valid", 8, 1);
+    else
+        OLED_ShowString(32, 24, (uint8_t*)"Invalid", 8, 1);
+    OLED_ShowNum(112, 24, gps_data.satellites, 2, 8, 1);
+    
+    // 第五行：纬度
+    if (gps_data.latitude >= 0)
+    {
+        OLED_ShowString(32, 32, (uint8_t*)"N ", 8, 1);
+    }
+    else
+    {
+        OLED_ShowString(32, 32, (uint8_t*)"S ", 8, 1);
+        gps_data.latitude = -gps_data.latitude;
+    }
+    int lat_int = (int)gps_data.latitude;
+    int lat_dec = (int)((gps_data.latitude - lat_int) * 10000);
+    OLED_ShowNum(48, 32, lat_int, 2, 8, 1);
+    OLED_ShowChar(64, 32, '.', 8, 1);
+    OLED_ShowNum(72, 32, lat_dec, 4, 8, 1);
+    
+    // 第六行：经度
+    if (gps_data.longitude >= 0)
+    {
+        OLED_ShowString(32, 40, (uint8_t*)"E ", 8, 1);
+    }
+    else
+    {
+        OLED_ShowString(32, 40, (uint8_t*)"W ", 8, 1);
+        gps_data.longitude = -gps_data.longitude;
+    }
+    int lon_int = (int)gps_data.longitude;
+    int lon_dec = (int)((gps_data.longitude - lon_int) * 10000);
+    OLED_ShowNum(48, 40, lon_int, 3, 8, 1);
+    OLED_ShowChar(72, 40, '.', 8, 1);
+    OLED_ShowNum(80, 40, lon_dec, 4, 8, 1);
     
     OLED_Refresh();
-    HAL_Delay(100);
+    HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
