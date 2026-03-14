@@ -18,12 +18,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "oled.h"
 #include "max30102.h"
+#include "mpu6050.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,6 +47,7 @@
 
 /* USER CODE BEGIN PV */
 MAX30102_Data max30102_data;
+MPU6050_Data mpu6050_data;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,9 +90,21 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   OLED_Init();
   MAX30102_Init();
+  
+  // 初始化 MPU6050 (使用标准地址 0x68)
+  MPU6050_Init();
+  
+  // 读取并显示 MPU6050 ID
+  uint8_t mpu_id = MPU6050_ReadID();
+  OLED_Clear();
+  OLED_ShowString(0, 0, (uint8_t*)"MPU6050 ID:", 8, 1);
+  OLED_ShowNum(80, 0, mpu_id, 2, 8, 1);
+  OLED_Refresh();
+  HAL_Delay(500);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -101,6 +116,9 @@ int main(void)
     /* USER CODE BEGIN 3 */
     // 读取 MAX30102 数据
     MAX30102_ReadFIFO(&max30102_data);
+    
+    // 读取 MPU6050 数据
+    MPU6050_ReadData(&mpu6050_data);
     
     // 清除显示区域
     OLED_Clear();
@@ -128,6 +146,28 @@ int main(void)
     {
       OLED_ShowString(40, 8, (uint8_t*)"---", 8, 1);
     }
+    
+    // 第三行显示温度
+    OLED_ShowString(0, 16, (uint8_t*)"T:", 8, 1);
+    int16_t temp_int = (int16_t)mpu6050_data.temperature;
+    OLED_ShowNum(16, 16, (uint32_t)temp_int, 2, 8, 1);
+    OLED_ShowString(40, 16, (uint8_t*)".", 8, 1);
+    int16_t temp_frac = (int16_t)((mpu6050_data.temperature - temp_int) * 10);
+    if (temp_frac < 0) temp_frac = -temp_frac;
+    OLED_ShowNum(48, 16, (uint32_t)temp_frac, 1, 8, 1);
+    OLED_ShowString(56, 16, (uint8_t*)"C", 8, 1);
+    
+    // 第四行显示加速度计
+    OLED_ShowString(0, 24, (uint8_t*)"A:", 8, 1);
+    OLED_ShowNum(16, 24, (uint32_t)(mpu6050_data.accel_x / 100), 2, 8, 1);
+    OLED_ShowNum(48, 24, (uint32_t)(mpu6050_data.accel_y / 100), 2, 8, 1);
+    OLED_ShowNum(80, 24, (uint32_t)(mpu6050_data.accel_z / 100), 2, 8, 1);
+    
+    // 第五行显示陀螺仪
+    OLED_ShowString(0, 32, (uint8_t*)"G:", 8, 1);
+    OLED_ShowNum(16, 32, (uint32_t)(mpu6050_data.gyro_x / 100), 2, 8, 1);
+    OLED_ShowNum(48, 32, (uint32_t)(mpu6050_data.gyro_y / 100), 2, 8, 1);
+    OLED_ShowNum(80, 32, (uint32_t)(mpu6050_data.gyro_z / 100), 2, 8, 1);
     
     OLED_Refresh();
     HAL_Delay(100);

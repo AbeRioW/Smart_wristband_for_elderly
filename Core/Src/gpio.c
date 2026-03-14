@@ -73,11 +73,11 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : MAX30102_INT_Pin */
-  GPIO_InitStruct.Pin = MAX30102_INT_Pin;
+  /*Configure GPIO pins : MAX30102_INT_Pin MPU6050_INT_Pin */
+  GPIO_InitStruct.Pin = MAX30102_INT_Pin|MPU6050_INT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(MAX30102_INT_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : MAX30102_SCL_Pin MAX30102_SDA_Pin */
   GPIO_InitStruct.Pin = MAX30102_SCL_Pin|MAX30102_SDA_Pin;
@@ -89,6 +89,9 @@ void MX_GPIO_Init(void)
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI1_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
 }
 
