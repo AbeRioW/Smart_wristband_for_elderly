@@ -89,30 +89,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   OLED_Init();
-  
-  OLED_Clear();
-  OLED_ShowString(0, 0, (uint8_t*)"MAX30102", 8, 1);
-  OLED_ShowString(0, 16, (uint8_t*)"Init...", 8, 1);
-  OLED_Refresh();
-  
   MAX30102_Init();
-  
-  // 读取并显示传感器 ID
-//  uint8_t part_id = MAX30102_ReadPartID();
-//  OLED_Clear();
-//  OLED_ShowString(0, 0, (uint8_t*)"MAX30102", 8, 1);
-//  OLED_ShowString(0, 16, (uint8_t*)"ID:", 8, 1);
-//  OLED_ShowNum(24, 16, part_id, 2, 8, 1);
-//  OLED_Refresh();
-//  HAL_Delay(1000);
-  
-  // 检查传感器是否就绪
-  uint8_t mode_reg = MAX30102_ReadReg(MAX30102_MODE_CONFIG);
-  OLED_Clear();
-  OLED_ShowString(0, 0, (uint8_t*)"Mode:", 8, 1);
-  OLED_ShowNum(40, 0, mode_reg, 2, 8, 1);
-  OLED_Refresh();
-  HAL_Delay(500);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -128,31 +105,28 @@ int main(void)
     // 清除显示区域
     OLED_Clear();
     
-    // 显示标题
-    OLED_ShowString(0, 0, (uint8_t*)"MAX30102", 8, 1);
-    
-    // 显示心率
-    OLED_ShowString(0, 16, (uint8_t*)"HR:", 8, 1);
+    // 第一行显示心率
+    OLED_ShowString(0, 0, (uint8_t*)"HR:", 8, 1);
     if (max30102_data.heart_rate > 0)
     {
-      OLED_ShowNum(24, 16, (uint32_t)max30102_data.heart_rate, 3, 8, 1);
-      OLED_ShowString(48, 16, (uint8_t*)"BPM", 8, 1);
+      OLED_ShowNum(24, 0, (uint32_t)max30102_data.heart_rate, 3, 8, 1);
+      OLED_ShowString(48, 0, (uint8_t*)"BPM", 8, 1);
     }
     else
     {
-      OLED_ShowString(24, 16, (uint8_t*)"---", 8, 1);
+      OLED_ShowString(24, 0, (uint8_t*)"---", 8, 1);
     }
     
-    // 显示血氧
-    OLED_ShowString(0, 32, (uint8_t*)"SpO2:", 8, 1);
+    // 第二行显示血氧
+    OLED_ShowString(0, 8, (uint8_t*)"SpO2:", 8, 1);
     if (max30102_data.spo2 > 0)
     {
-      OLED_ShowNum(40, 32, (uint32_t)max30102_data.spo2, 3, 8, 1);
-      OLED_ShowString(64, 32, (uint8_t*)"%", 8, 1);
+      OLED_ShowNum(40, 8, (uint32_t)max30102_data.spo2, 3, 8, 1);
+      OLED_ShowString(64, 8, (uint8_t*)"%", 8, 1);
     }
     else
     {
-      OLED_ShowString(40, 32, (uint8_t*)"---", 8, 1);
+      OLED_ShowString(40, 8, (uint8_t*)"---", 8, 1);
     }
     
     OLED_Refresh();
