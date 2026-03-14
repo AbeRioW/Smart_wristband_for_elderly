@@ -17,6 +17,7 @@
 "smart_wristband_for_elderly\stm32f1xx_hal_exti.o"
 "smart_wristband_for_elderly\system_stm32f1xx.o"
 "smart_wristband_for_elderly\oled.o"
+"smart_wristband_for_elderly\max30102.o"
 --strict --scatter "Smart_wristband_for_elderly\Smart_wristband_for_elderly.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

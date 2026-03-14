@@ -67,6 +67,13 @@ void Error_Handler(void);
 #define OLED_DC_GPIO_Port GPIOA
 #define OLED_CS_Pin GPIO_PIN_1
 #define OLED_CS_GPIO_Port GPIOA
+#define MAX30102_INT_Pin GPIO_PIN_1
+#define MAX30102_INT_GPIO_Port GPIOB
+#define MAX30102_INT_EXTI_IRQn EXTI1_IRQn
+#define MAX30102_SCL_Pin GPIO_PIN_10
+#define MAX30102_SCL_GPIO_Port GPIOB
+#define MAX30102_SDA_Pin GPIO_PIN_11
+#define MAX30102_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
