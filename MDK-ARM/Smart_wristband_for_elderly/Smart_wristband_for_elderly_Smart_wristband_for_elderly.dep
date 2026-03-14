@@ -1,8 +1,8 @@
 Dependencies for Project 'Smart_wristband_for_elderly', Target 'Smart_wristband_for_elderly': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::.\ARMCC
-F (startup_stm32f103xb.s)(0x69B51048)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o smart_wristband_for_elderly\startup_stm32f103xb.o --depend smart_wristband_for_elderly\startup_stm32f103xb.d)
-F (../Core/Src/main.c)(0x69B5167F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\main.o --omf_browse smart_wristband_for_elderly\main.crf --depend smart_wristband_for_elderly\main.d)
-I (../Core/Inc/main.h)(0x69B4FB85)
+F (startup_stm32f103xb.s)(0x69B52D27)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o smart_wristband_for_elderly\startup_stm32f103xb.o --depend smart_wristband_for_elderly\startup_stm32f103xb.d)
+F (../Core/Src/main.c)(0x69B530BE)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\main.o --omf_browse smart_wristband_for_elderly\main.crf --depend smart_wristband_for_elderly\main.d)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -30,15 +30,15 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
 I (../Core/Inc/i2c.h)(0x69B4FB85)
-I (../Core/Inc/usart.h)(0x69B51046)
-I (../Core/Inc/gpio.h)(0x69B40A40)
+I (../Core/Inc/usart.h)(0x69B52D25)
+I (../Core/Inc/gpio.h)(0x69B52BD3)
 I (../App/oled.h)(0x69B40B89)
 I (../App/max30102.h)(0x69B4EC35)
 I (../App/mpu6050.h)(0x69B4F894)
 I (../App/gps.h)(0x69B510B9)
-F (../Core/Src/gpio.c)(0x69B4FB85)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\gpio.o --omf_browse smart_wristband_for_elderly\gpio.crf --depend smart_wristband_for_elderly\gpio.d)
-I (../Core/Inc/gpio.h)(0x69B40A40)
-I (../Core/Inc/main.h)(0x69B4FB85)
+F (../Core/Src/gpio.c)(0x69B526A4)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\gpio.o --omf_browse smart_wristband_for_elderly\gpio.crf --depend smart_wristband_for_elderly\gpio.d)
+I (../Core/Inc/gpio.h)(0x69B52BD3)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -67,7 +67,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
 F (../Core/Src/i2c.c)(0x69B4FB85)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\i2c.o --omf_browse smart_wristband_for_elderly\i2c.crf --depend smart_wristband_for_elderly\i2c.d)
 I (../Core/Inc/i2c.h)(0x69B4FB85)
-I (../Core/Inc/main.h)(0x69B4FB85)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -94,9 +94,9 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
-F (../Core/Src/usart.c)(0x69B51046)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\usart.o --omf_browse smart_wristband_for_elderly\usart.crf --depend smart_wristband_for_elderly\usart.d)
-I (../Core/Inc/usart.h)(0x69B51046)
-I (../Core/Inc/main.h)(0x69B4FB85)
+F (../Core/Src/usart.c)(0x69B52D25)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\usart.o --omf_browse smart_wristband_for_elderly\usart.crf --depend smart_wristband_for_elderly\usart.d)
+I (../Core/Inc/usart.h)(0x69B52D25)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -123,8 +123,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
-F (../Core/Src/stm32f1xx_it.c)(0x69B51047)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\stm32f1xx_it.o --omf_browse smart_wristband_for_elderly\stm32f1xx_it.crf --depend smart_wristband_for_elderly\stm32f1xx_it.d)
-I (../Core/Inc/main.h)(0x69B4FB85)
+F (../Core/Src/stm32f1xx_it.c)(0x69B52D26)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\stm32f1xx_it.o --omf_browse smart_wristband_for_elderly\stm32f1xx_it.crf --depend smart_wristband_for_elderly\stm32f1xx_it.d)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -151,9 +151,9 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
-I (../Core/Inc/stm32f1xx_it.h)(0x69B51047)
+I (../Core/Inc/stm32f1xx_it.h)(0x69B52D26)
 F (../Core/Src/stm32f1xx_hal_msp.c)(0x69B40F79)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\stm32f1xx_hal_msp.o --omf_browse smart_wristband_for_elderly\stm32f1xx_hal_msp.crf --depend smart_wristband_for_elderly\stm32f1xx_hal_msp.d)
-I (../Core/Inc/main.h)(0x69B4FB85)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -560,8 +560,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
 F (..\App\oled.c)(0x69B40AEF)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\oled.o --omf_browse smart_wristband_for_elderly\oled.crf --depend smart_wristband_for_elderly\oled.d)
 I (..\App\oled.h)(0x69B40B89)
-I (../Core/Inc/gpio.h)(0x69B40A40)
-I (../Core/Inc/main.h)(0x69B4FB85)
+I (../Core/Inc/gpio.h)(0x69B52BD3)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -593,8 +593,8 @@ I (..\App\oledfont.h)(0x69B40AEF)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9B348A)
 F (..\App\max30102.c)(0x69B4ED5F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\max30102.o --omf_browse smart_wristband_for_elderly\max30102.crf --depend smart_wristband_for_elderly\max30102.d)
 I (..\App\max30102.h)(0x69B4EC35)
-I (../Core/Inc/gpio.h)(0x69B40A40)
-I (../Core/Inc/main.h)(0x69B4FB85)
+I (../Core/Inc/gpio.h)(0x69B52BD3)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -624,8 +624,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
 F (..\App\mpu6050.h)(0x69B4F894)()
 F (..\App\mpu6050.c)(0x69B4FC04)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../App-I.\RTE\_Smart_wristband_for_elderly-IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o smart_wristband_for_elderly\mpu6050.o --omf_browse smart_wristband_for_elderly\mpu6050.crf --depend smart_wristband_for_elderly\mpu6050.d)
 I (..\App\mpu6050.h)(0x69B4F894)
-I (../Core/Inc/gpio.h)(0x69B40A40)
-I (../Core/Inc/main.h)(0x69B4FB85)
+I (../Core/Inc/gpio.h)(0x69B52BD3)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69A3C6A1)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69B51047)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x69A3C6A1)
@@ -681,8 +681,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69A3C6A1)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69A3C6A1)
-I (../Core/Inc/usart.h)(0x69B51046)
-I (../Core/Inc/main.h)(0x69B4FB85)
+I (../Core/Inc/usart.h)(0x69B52D25)
+I (../Core/Inc/main.h)(0x69B526A5)
 I (..\App\oled.h)(0x69B40B89)
-I (../Core/Inc/gpio.h)(0x69B40A40)
+I (../Core/Inc/gpio.h)(0x69B52BD3)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B3488)

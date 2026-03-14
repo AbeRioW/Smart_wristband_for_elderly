@@ -63,6 +63,55 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+// 跌倒检测阈值
+#define FALL_ACCEL_THRESHOLD 150  // 加速度阈值
+#define FALL_GYRO_THRESHOLD 100    // 陀螺仪阈值
+
+// 跌倒检测状态
+static uint8_t fall_detected = 0;
+static uint32_t fall_alarm_time = 0;
+
+// 计算加速度模长
+static int32_t CalculateAccelMagnitude(int16_t x, int16_t y, int16_t z)
+{
+    return abs(x) + abs(y) + abs(z);
+}
+
+// 跌倒检测函数
+static void DetectFall(MPU6050_Data *data)
+{
+    // 计算加速度模长
+    int32_t accel_mag = CalculateAccelMagnitude(data->accel_x, data->accel_y, data->accel_z);
+    
+    // 计算陀螺仪模长
+    int32_t gyro_mag = abs(data->gyro_x) + abs(data->gyro_y) + abs(data->gyro_z);
+    
+    // 检测跌倒条件
+    if (accel_mag > FALL_ACCEL_THRESHOLD && gyro_mag > FALL_GYRO_THRESHOLD)
+    {
+        if (!fall_detected)
+        {
+            fall_detected = 1;
+            fall_alarm_time = HAL_GetTick();
+            // 触发报警
+            HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
+        }
+    }
+    else
+    {
+        fall_detected = 0;
+        // 停止报警
+        HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+    }
+    
+    // 报警持续时间（5秒）
+    if (fall_detected && (HAL_GetTick() - fall_alarm_time > 5000))
+    {
+        HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+        fall_detected = 0;
+    }
+}
+
 // USART 接收回调函数
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
@@ -74,6 +123,44 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
         // 重新启动接收中断
         HAL_UART_Receive_IT(&huart1, &gps_rx_buf, 1);
     }
+}
+
+// 通过串口2发送传感器数据
+void SendSensorData(void)
+{
+    char buffer[256];
+    
+    if (gps_data.fix)
+    {
+        // GPS 有效时发送所有数据
+        sprintf(buffer, "Accelerometer: X=%d, Y=%d, Z=%d | Gyroscope: X=%d, Y=%d, Z=%d | GPS: Lat=%.6f, Lon=%.6f | Heart Rate=%.0f BPM, SpO2=%.0f%%\r\n",
+                mpu6050_data.accel_x,
+                mpu6050_data.accel_y,
+                mpu6050_data.accel_z,
+                mpu6050_data.gyro_x,
+                mpu6050_data.gyro_y,
+                mpu6050_data.gyro_z,
+                gps_data.latitude,
+                gps_data.longitude,
+                max30102_data.heart_rate,
+                max30102_data.spo2);
+    }
+    else
+    {
+        // GPS 无效时不发送 GPS 数据
+        sprintf(buffer, "Accelerometer: X=%d, Y=%d, Z=%d | Gyroscope: X=%d, Y=%d, Z=%d | GPS: No Fix | Heart Rate=%.0f BPM, SpO2=%.0f%%\r\n",
+                mpu6050_data.accel_x,
+                mpu6050_data.accel_y,
+                mpu6050_data.accel_z,
+                mpu6050_data.gyro_x,
+                mpu6050_data.gyro_y,
+                mpu6050_data.gyro_z,
+                max30102_data.heart_rate,
+                max30102_data.spo2);
+    }
+    
+    // 通过串口2发送数据
+    HAL_UART_Transmit(&huart2, (uint8_t*)buffer, strlen(buffer), 100);
 }
 
 /* USER CODE END 0 */
@@ -109,6 +196,7 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   OLED_Init();
   MAX30102_Init();
@@ -143,6 +231,9 @@ int main(void)
     
     // 读取 MPU6050 数据
     MPU6050_ReadData(&mpu6050_data);
+    
+    // 跌倒检测
+    DetectFall(&mpu6050_data);
     
     // 读取 GPS 数据
     GPS_GetData(&gps_data);
@@ -239,7 +330,11 @@ int main(void)
     OLED_ShowNum(80, 40, lon_dec, 4, 8, 1);
     
     OLED_Refresh();
-    HAL_Delay(500);
+    
+    // 通过串口2发送传感器数据
+    SendSensorData();
+    
+    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }

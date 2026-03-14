@@ -34,6 +34,10 @@ extern "C" {
 
 /* USER CODE BEGIN Private defines */
 
+// BEEP 引脚定义
+#define BEEP_Pin GPIO_PIN_12
+#define BEEP_GPIO_Port GPIOB
+
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);
